@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gran Rifa - Alexa Echo Dot 4 + $1,000</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="hero">
+        <div class="container">
+            <h1>¡GRAN RIFA SOLIDARIA!</h1>
+            <p class="prize-text">Gana una <strong>Alexa Echo Dot 4</strong> + <strong>$1,000 MXN</strong></p>
+            <div class="price-tag">Costo por boleto: <span>$100 MXN</span></div>
+            <div class="prize-badge">¡Solo 50 números!</div>
+            <div style="margin-top: 20px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <button class="btn-secundario" onclick="abrirConsulta()">Ver mis boletos</button>
+                <button class="btn-metodos" onclick="abrirMetodos()">Métodos de pago</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="tarjeta-premio">
+            <div class="premio-contenedor"> 
+                <div class="premio-imagen">
+                    <img src="alexa.jpg" alt="Alexa Echo Dot 4">
+                </div>
+                <div class="premio-especificaciones">
+                    <div class="premio-titulo">🎁 Características del Premio</div>
+                    <ul class="especificaciones-lista">
+                        <li><strong>Premio Principal:</strong> <span>Alexa Echo Dot 4</span></li>
+                        <li><strong>Adicional:</strong> <span>$1,000 MXN en Efectivo</span></li>
+                        <li><strong>Conectividad:</strong> <span>Bluetooth y Wi-Fi</span></li>
+                        <li><strong>Control:</strong> <span>Manos libres con Alexa</span></li>
+                        <li><strong>Audio:</strong> <span>Sonido nítido para música y alarmas</span></li>
+                        <li><strong>Funciones:</strong> <span>Hogar inteligente y skills</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+<section class="contenedor-sorteo" style="margin: 25px auto; max-width: 600px; padding: 20px; background-color: #ffffff; border: 2px solid #e2e8f0; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+        <span style="font-size: 1.5rem; margin-right: 10px;">🛡️</span>
+        <h3 style="margin: 0; color: #1e293b; font-family: sans-serif;">Bases y Transparencia</h3>
+    </div>
+    
+    <div style="text-align: left; color: #475569; line-height: 1.6; font-family: sans-serif;">
+        <ul style="padding-left: 20px; margin-bottom: 15px;">
+            <li style="margin-bottom: 8px;">
+                <strong>Fecha programada:</strong> Martes 05 de mayo de 2026.
+            </li>
+            <li style="margin-bottom: 8px;">
+                <strong>Método:</strong> Últimas 2 cifras del Premio Mayor del sorteo de la <strong>Lotería Nacional</strong> de dicha fecha.
+            </li>
+            <li style="margin-bottom: 8px;">
+                <strong>Cláusula de Meta:</strong> Para llevar a cabo el sorteo en la fecha indicada, se requiere una meta mínima del <strong>60% de los boletos vendidos (30 boletos)</strong>.
+            </li>
+            <li style="margin-bottom: 8px;">
+                <strong>Reprogramación:</strong> En caso de no alcanzar el mínimo del 60%, el sorteo se reprogramará para la siguiente fecha oficial de la Lotería Nacional, notificando a todos los participantes.
+            </li>
+        </ul>
+
+        <div style="background-color: #f1f5f9; padding: 10px; border-radius: 8px; font-size: 0.85rem; border-left: 4px solid #0ea5e9;">
+            ℹ️ Puedes verificar los resultados en el sitio oficial de la <a href="https://www.loterianacional.gob.mx/" target="_blank" style="color: #0284c7; font-weight: bold; text-decoration: none;">Lotería Nacional</a>.
+        </div>
+    </div>
+</section>
+
+        <section class="rifa-section">
+            <div class="status-legend">
+                <span class="legend-item"><span class="circle available"></span> Disponible</span>
+                <span class="legend-item"><span class="circle taken"></span> Apartado</span>
+                <span class="legend-item"><span class="circle sold"></span> Vendido</span>
+            </div>
+            <div id="cuadricula-boletos" class="grid-container">
+                <p style="grid-column: 1/-1; text-align:center;">Cargando disponibilidad...</p>
+            </div>
+        </section>
+    </main>
+
+    <div id="modal-registro" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="close-btn" onclick="cerrarModal()">&times;</button>
+            <h2>Apartar Boleto #<span id="numero-elegido">--</span></h2>
+            <form id="form-rifa">
+                <div class="input-group">
+                    <label>Nombre completo:</label>
+                    <input type="text" id="nombre-usuario" placeholder="Ej. Brayan Martínez" required>
+                </div>
+                <div class="input-group">
+                    <label>WhatsApp (10 dígitos):</label>
+                    <input type="tel" id="whatsapp-usuario" placeholder="8112345678" pattern="[0-9]{10}" required>
+                </div>
+
+                <div class="nota-pago-urgente">
+                    ⚠️ <strong>Importante:</strong> Debes enviar tu comprobante de pago al WhatsApp <strong>8998999796</strong> para confirmar tu boleto.
+                </div>
+
+                <button type="submit" class="btn-confirmar">Confirmar Apartado</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="modal-metodos" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="close-btn" onclick="cerrarMetodos()">&times;</button>
+            <h2>Métodos de Pago</h2>
+            <div class="card-pago">
+                <p><strong>BANCO:</strong> Spin Vía Oxxo</p>
+                <p><strong>TITULAR:</strong> Nohemi</p>
+                <p><strong>CLABE:</strong> 728969000070979791</p>
+            </div>
+            <button class="btn-cerrar-pago" onclick="cerrarMetodos()">Cerrar</button>
+        </div>
+    </div>
+
+    <div id="modal-consulta" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="close-btn" onclick="cerrarConsulta()">&times;</button>
+            <h2>Mis Boletos</h2>
+            <p class="instruccion-busqueda">Escribe tu número de celular para encontrar tu boleto(s) y revisar su estado actual.</p>
+            <div class="busqueda-container">
+                <input type="tel" id="consulta-whatsapp" placeholder="899..." maxlength="10">
+                <button class="btn-buscar" onclick="buscarBoletosPorTelefono()">Buscar</button>
+            </div>
+            <<div id="resultado-busqueda" style="max-height: 200px; overflow-y: auto; margin-bottom: 15px;"></div>
+            <button class="btn-cerrar-pago" onclick="cerrarConsulta()">Cerrar</button>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
